@@ -1,0 +1,8 @@
+En este proyecto se ha usado Vite como framework
+Pasos:
+npm create vite: Se le da a React y luego javascript
+npm i: instalar las dependencias del package.json
+npm run dev: levantar el servidor
+Los componentes deben empezar por mayúscula para que se consideren componentes personalizados y ejecuta el contenido
+de la función, mientras que si se quedan en minúscula, React lo entiende como un elemento HTML por defecto
+Los css modules están puestos en la carpeta components porque en el vídeo lo hace así
