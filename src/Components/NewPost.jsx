@@ -1,16 +1,15 @@
-import React from "react";
 import styles from "./NewPost.module.css";
-
-function NewPost() {
+import React from "react";
+function NewPost(props) {
   return (
     <form className={`${styles["form"]}`}>
       <p>
         <label htmlFor="body">Text</label>
-        <textarea name="" id="body" required rows={3}></textarea>
+        <textarea id="body" required rows={3} onChange={props.onBodyChange} />
       </p>
       <p>
         <label htmlFor="name">Your name</label>
-        <input type="text" id="name" required />
+        <input type="text" id="name" required onChange={props.onAuthorChange} />
       </p>
     </form>
   );

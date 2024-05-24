@@ -6,4 +6,4 @@ En este repositorio se va visualizar finalmente una aplicación sencilla realiza
 
 1º npm i: Para generar la carpeta node_modules que esta en el .gitignore.
 
-2º npm run dev: levantar el server y pegar http://localhost:5173/ para ver el proyecto en local.
+2º npm run dev: levantar el server y pegar http://localhost:5173/ en el navegador para ver el proyecto en local.
