@@ -1,5 +1,6 @@
 import styles from "./NewPost.module.css";
 import React from "react";
+
 function NewPost(props) {
   return (
     <form className={`${styles["form"]}`}>
