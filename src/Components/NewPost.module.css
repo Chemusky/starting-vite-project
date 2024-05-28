@@ -23,6 +23,15 @@
   color: #28262c;
 }
 
+.icon-container {
+  display: flex;
+  justify-content: right;
+}
+
+svg {
+  cursor: pointer;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;

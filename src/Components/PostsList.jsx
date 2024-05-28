@@ -4,20 +4,13 @@ import styles from "./PostsList.module.css";
 import NewPost from "./NewPost";
 import Modal from "./Modal";
 
-function PostsList() {
+function PostsList({ modalIsVisible, modalNotVisible }) {
   // setEnteredBody tiene el set porque modifica la variable enteredBody
   // se pone handler cuando es una función que se va asignar a algún evento
   // con event.target.value se registra el valor introducido por el usuario
-  // por defecto se establece que el modal es visible (true)
 
-  const [modalIsVisible, setModalIsVisible] = useState(true);
   const [enteredBody, setEnteredBody] = useState("");
   const [enteredAuthor, setEnteredAuthor] = useState("");
-
-  function hideModalHandler() {
-    // esta función se pasa al componente Modal
-    setModalIsVisible(false);
-  }
 
   function bodyChangeHandler(event) {
     setEnteredBody(event.target.value);
@@ -29,7 +22,7 @@ function PostsList() {
   return (
     <>
       {modalIsVisible && (
-        <Modal onClose={hideModalHandler}>
+        <Modal onClose={modalNotVisible}>
           <NewPost
             onBodyChange={bodyChangeHandler}
             onAuthorChange={authorChangeHandler}

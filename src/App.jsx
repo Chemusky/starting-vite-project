@@ -1,13 +1,33 @@
-import Post from "./Components/Post";
+import { useState } from "react";
+import MainHeader from "./Components/MainHeader";
+
 import PostsList from "./Components/PostsList";
 
 function App() {
-  // vídeo 18 de udemy
   // los componentes se pueden poner también <Post> </Post>
+  // por defecto se establece que el modal es no visible (false)
+
+  const [modalIsVisible, setModalIsVisible] = useState(false);
+
+  function showModalHandler() {
+    setModalIsVisible(true);
+  }
+
+  function hideModalHandler() {
+    // esta función se pasa al componente Modal
+    setModalIsVisible(false);
+  }
+
   return (
-    <main>
-      <PostsList />
-    </main>
+    <>
+      <MainHeader onCreatePost={showModalHandler} />
+      <main>
+        <PostsList
+          modalIsVisible={modalIsVisible}
+          modalNotVisible={hideModalHandler}
+        />
+      </main>
+    </>
   );
 }
 
