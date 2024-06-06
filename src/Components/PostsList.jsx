@@ -5,34 +5,24 @@ import NewPost from "./NewPost";
 import Modal from "./Modal";
 
 function PostsList({ modalIsVisible, modalNotVisible }) {
-  // setEnteredBody tiene el set porque modifica la variable enteredBody
-  // se pone handler cuando es una función que se va asignar a algún evento
-  // con event.target.value se registra el valor introducido por el usuario
+  const [posts, setPosts] = useState([]);
 
-  const [enteredBody, setEnteredBody] = useState("");
-  const [enteredAuthor, setEnteredAuthor] = useState("");
-
-  function bodyChangeHandler(event) {
-    setEnteredBody(event.target.value);
-  }
-  function authorChangeHandler(event) {
-    setEnteredAuthor(event.target.value);
+  function addPostHandler(postData) {
+    // se establece primero el nuevo mensaje, seguido de una copia de los anteriores mensajes
+    // porque se ha usado el spread operator
+    setPosts([postData, ...posts]);
   }
 
   return (
     <>
       {modalIsVisible && (
         <Modal onClose={modalNotVisible}>
-          <NewPost
-            onBodyChange={bodyChangeHandler}
-            onAuthorChange={authorChangeHandler}
-          />
+          <NewPost onCancel={modalNotVisible} />
         </Modal>
       )}
 
       <ul className={`${styles["posts"]}`}>
-        <Post author={enteredAuthor} body={enteredBody} />
-        <Post author="Emanuel" body="Web Developers are very abstemios" />
+        <Post author="Satans" body="Web Developers are very abstemios" />
       </ul>
     </>
   );

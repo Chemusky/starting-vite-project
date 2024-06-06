@@ -1,11 +1,39 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./NewPost.module.css";
 
-function NewPost(props) {
+function NewPost({ onCancel }) {
+  // setEnteredBody tiene el set porque modifica la variable enteredBody
+  // se pone handler cuando es una función que se va asignar a algún evento
+  // con event.target.value se registra el valor introducido por el usuario
+
+  const [enteredBody, setEnteredBody] = useState("");
+  const [enteredAuthor, setEnteredAuthor] = useState("");
+
+  function bodyChangeHandler(event) {
+    setEnteredBody(event.target.value);
+  }
+  function authorChangeHandler(event) {
+    setEnteredAuthor(event.target.value);
+  }
+
+  function submitHandler(event) {
+    // preventDefault() evita que el navegador genere y envíe una petición HTTP por defecto
+    // los valores de enteredBody y enteredAuthor se agrupan en un objeto
+    event.preventDefault();
+    const postData = {
+      body: enteredBody,
+      author: enteredAuthor,
+    };
+    // se puede ver el autor y el contenido del mensaje por consola al enviar los datos
+    console.log(postData);
+    onCancel(); /* hace que se cierre al hacer click en submit */
+  }
+
   return (
-    <form className={`${styles["form"]}`}>
+    <form className={`${styles["form"]}`} onSubmit={submitHandler}>
       <div className={`${styles["icon-container"]}`}>
         <svg
+          onClick={onCancel}
           className={`${styles["svg"]}`}
           width="40px"
           height="40px"
@@ -16,11 +44,11 @@ function NewPost(props) {
           xmlns="http://www.w3.org/2000/svg"
           stroke="#e50b0b"
         >
-          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
           <g
             id="SVGRepo_tracerCarrier"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></g>
           <g id="SVGRepo_iconCarrier">
             <path
@@ -37,11 +65,16 @@ function NewPost(props) {
       </div>
       <p>
         <label htmlFor="body">Text</label>
-        <textarea id="body" required rows={3} onChange={props.onBodyChange} />
+        <textarea id="body" required rows={3} onChange={bodyChangeHandler} />
       </p>
       <p>
         <label htmlFor="name">Your name</label>
-        <input type="text" id="name" required onChange={props.onAuthorChange} />
+        <input type="text" id="name" required onChange={authorChangeHandler} />
+      </p>
+      <p className={`${styles["actions"]}`}>
+        {/* Por defecto, el tipo del button es submit y envía información al formulario */}
+        {/* si creara un botón para cancelar, tendría que cambiar el type */}
+        <button>Submit</button>
       </p>
     </form>
   );
