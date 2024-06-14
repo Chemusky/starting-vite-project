@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./NewPost.module.css";
 
-function NewPost({ onCancel }) {
+function NewPost({ onCancel, onAddPost }) {
   // setEnteredBody tiene el set porque modifica la variable enteredBody
   // se pone handler cuando es una función que se va asignar a algún evento
   // con event.target.value se registra el valor introducido por el usuario
@@ -25,7 +25,8 @@ function NewPost({ onCancel }) {
       author: enteredAuthor,
     };
     // se puede ver el autor y el contenido del mensaje por consola al enviar los datos
-    console.log(postData);
+    // console.log(postData);
+    onAddPost(postData);
     onCancel(); /* hace que se cierre al hacer click en submit */
   }
 
@@ -39,7 +40,7 @@ function NewPost({ onCancel }) {
           height="40px"
           viewBox="0 0 1024 1024"
           fill="#e50b0b"
-          class="icon"
+          // class="icon"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
           stroke="#e50b0b"
