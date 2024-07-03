@@ -6,3 +6,4 @@ npm run dev: levantar el servidor
 Los componentes deben empezar por mayúscula para que se consideren componentes personalizados y ejecuta el contenido
 de la función, mientras que si se quedan en minúscula, React lo entiende como un elemento HTML por defecto
 Los css modules están puestos en la carpeta components porque en el vídeo lo hace así
+Se ha utilizado el enrutador de React

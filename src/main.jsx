@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Posts from "./routes/Posts";
+import Posts, { loader as postsLoader } from "./routes/Posts";
+import PostDetails, { loader as PostDetailsLoader } from "./routes/PostDetails";
 import RootLayout from "./routes/RootLayout";
 import "./index.css";
-import NewPost from "./routes/NewPost";
+import NewPost, { action as NewPostAction } from "./routes/NewPost";
 
 const router = createBrowserRouter([
   // se establece la ruta(path) y el elemente(elemento) a renderizar (se puede renderizar etiquetas html también)
@@ -16,7 +17,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Posts />,
-        children: [{ path: "/create-post", element: <NewPost /> }],
+        loader: postsLoader,
+        children: [
+          { path: "/create-post", element: <NewPost />, action: NewPostAction },
+          { path: "/:id", element: <PostDetails />, loader: PostDetailsLoader },
+        ],
       },
     ],
   },
